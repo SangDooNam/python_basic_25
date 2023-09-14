@@ -86,6 +86,37 @@ Write a Python program to convert Year/Month/Day to Day of Year using datetime m
 
 Write a Python program to find the date of the first Monday of a given week.
 """
+import re
+from datetime import datetime as dt, timedelta as td
+
+# def monday_finder(date):
+    
+#     date = dt.strptime(date, '%Y-%m-%d')
+#     monday = date - td(days= date.weekday())
+    
+#     return f'The monday of this week: {monday.strftime("%B-%d")}'
+    
+
+# date = input('Enter any date to find Monday of given week (yyyy-mm-dd): ')
+
+# pattern = r'(^[0-9]{4})-(1[0-2]|[0-9]+)-(3[01]|[0-2]?[0-9]+$)'
+
+# match = re.match(pattern, date)
+
+# loop_turn_off = True
+
+# while loop_turn_off == True:
+    
+#     if match:
+
+#         print(monday_finder(date))
+#         loop_turn_off = False
+#     else:
+#         print('Invalid date. Please try again.')
+#         date = input('Enter any date to find Monday of given week (yyyy-mm-dd): ')
+#         continue
+
+
 
 
 # def monday_finder():
@@ -150,38 +181,38 @@ Write a Python program to find the date of the first Monday of a given week.
 
 #------------------------------------------------
 
-def sunday_finder(year):
+# def sunday_finder(year):
     
-    # current_date = dt.datetime.today()
+#     # current_date = dt.datetime.today()
     
-    first_day_of_year = dt.datetime(year, 1, 1)
+#     first_day_of_year = dt.datetime(year, 1, 1)
     
-    last_day_of_year = dt.datetime(year, 12, 31)
+#     last_day_of_year = dt.datetime(year, 12, 31)
     
-    sundays_of_the_year = []
+#     sundays_of_the_year = []
     
     
-    while first_day_of_year <= last_day_of_year:
+#     while first_day_of_year <= last_day_of_year:
         
-        year, week, weekday = first_day_of_year.isocalendar()
+#         year, week, weekday = first_day_of_year.isocalendar()
         
-        if weekday % 7 == 0:
+#         if weekday % 7 == 0:
             
-            reform = first_day_of_year.strftime('%Y-%m-%d')
+#             reform = first_day_of_year.strftime('%Y-%m-%d')
             
-            sundays_of_the_year.append(reform)
+#             sundays_of_the_year.append(reform)
             
-        first_day_of_year += dt.timedelta(days = 1)
+#         first_day_of_year += dt.timedelta(days = 1)
         
-    sundays_of_the_year = "\n".join(sundays_of_the_year)
+#     sundays_of_the_year = "\n".join(sundays_of_the_year)
     
-    return f'Output:\n{sundays_of_the_year}'
+#     return f'Output:\n{sundays_of_the_year}'
 
 
 
-year = int(input('Please enter a year(yyyy) to determine the number of Sundays in that year: '))
+# year = int(input('Please enter a year(yyyy) to determine the number of Sundays in that year: '))
 
-print(sunday_finder(year))
+# print(sunday_finder(year))
 
 #--------------------------------------------------------
 # def sunday_finder(year):
@@ -212,3 +243,33 @@ print(sunday_finder(year))
 #     return f'Output:\n{sundays_of_the_year}'
 
 # print(sunday_finder())
+
+
+
+def sunday_finder(year):
+    
+    year_look_for = dt(year,1, 1)
+    
+    end_of_year = dt(year, 12, 31)
+    
+    sunday = []
+    
+    while year_look_for < end_of_year:
+        
+        if year_look_for.weekday() == 6:
+            
+            print(year_look_for.strftime('%Y-%B-%d'))
+    #         reform = year_look_for.strftime('%Y-%B-%d')
+            
+    #         sunday.append(reform)
+        year_look_for += td(days=1)
+    
+    # sunday = "\n".join(sunday)
+        
+    # return year_look_for
+    
+year = int(input('Enter any year to find Sundays of year (yyyy): '))    
+
+
+sunday_finder(year)
+# print(sunday_finder(year))
